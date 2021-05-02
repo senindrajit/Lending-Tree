@@ -6,8 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Windows;
+//using System.Windows.Forms;
 using System.Web.Security;
-
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -41,7 +42,9 @@ namespace WebApplication1.Controllers
             {
                 db.Users.Add(user);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                MessageBox.Show("New User Created Successfully");
+                
+                return RedirectToAction("Index","Home");
             }
             else {
                 throw new Exception();
