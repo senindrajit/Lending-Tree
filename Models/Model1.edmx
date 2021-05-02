@@ -1,0 +1,570 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="lendingTreeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="AgentId" />
+          </Key>
+          <Property Name="AgentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="A_FirstName" Type="varchar" MaxLength="20" />
+          <Property Name="A_LastName" Type="varchar" MaxLength="20" />
+          <Property Name="A_Dob" Type="date" />
+          <Property Name="A_Gender" Type="bit" />
+          <Property Name="A_ContactNumber" Type="bigint" />
+          <Property Name="A_Password" Type="varchar" MaxLength="20" />
+          <Property Name="DepartmentId" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DepartmentName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Loan">
+          <Key>
+            <PropertyRef Name="LoanId" />
+          </Key>
+          <Property Name="LoanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoanAmount" Type="bigint" />
+          <Property Name="Due_Date" Type="date" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Income" Type="bigint" />
+          <Property Name="LoanType" Type="varchar" MaxLength="20" />
+          <Property Name="PanNo" Type="varchar" MaxLength="20" />
+          <Property Name="AadharNo" Type="varchar" MaxLength="20" />
+          <Property Name="BankAcc" Type="varchar" MaxLength="20" />
+          <Property Name="UserId" Type="varchar" MaxLength="30" />
+          <Property Name="LoanAgency_AdminId" Type="int" />
+          <Property Name="VAgent" Type="int" />
+          <Property Name="AppAgencyAgent" Type="int" />
+          <Property Name="PickupAgent" Type="int" />
+          <Property Name="LegalAgent" Type="int" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="RequestId" />
+          </Key>
+          <Property Name="RequestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Issue" Type="varchar(max)" />
+          <Property Name="Descrip" Type="varchar(max)" />
+          <Property Name="DateTicket" Type="date" />
+          <Property Name="Resolution" Type="varchar(max)" />
+          <Property Name="UserId" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="FirstName" Type="varchar" MaxLength="20" />
+          <Property Name="LastName" Type="varchar" MaxLength="20" />
+          <Property Name="Dob" Type="date" />
+          <Property Name="Gender" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ContactNumber" Type="bigint" />
+          <Property Name="Email" Type="varchar" MaxLength="30" />
+          <Property Name="UserId" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="30" />
+          <Property Name="Category" Type="varchar" MaxLength="30" />
+          <Property Name="Q1" Type="varchar" MaxLength="100" />
+          <Property Name="Q2" Type="varchar" MaxLength="100" />
+          <Property Name="Q3" Type="varchar" MaxLength="100" />
+          <Property Name="A1" Type="varchar" MaxLength="100" />
+          <Property Name="A2" Type="varchar" MaxLength="100" />
+          <Property Name="A3" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK__Agent__Departmen__3B75D760">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Agent" Type="Self.Agent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="Agent">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Loan__AppAgencyA__45F365D3">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
+          <End Role="Loan" Type="Self.Loan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentId" />
+            </Principal>
+            <Dependent Role="Loan">
+              <PropertyRef Name="AppAgencyAgent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Loan__LegalAgent__47DBAE45">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
+          <End Role="Loan" Type="Self.Loan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentId" />
+            </Principal>
+            <Dependent Role="Loan">
+              <PropertyRef Name="LegalAgent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Loan__LoanAgency__440B1D61">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
+          <End Role="Loan" Type="Self.Loan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentId" />
+            </Principal>
+            <Dependent Role="Loan">
+              <PropertyRef Name="LoanAgency_AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Loan__PickupAgen__46E78A0C">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
+          <End Role="Loan" Type="Self.Loan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentId" />
+            </Principal>
+            <Dependent Role="Loan">
+              <PropertyRef Name="PickupAgent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Loan__UserId__4316F928">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Loan" Type="Self.Loan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Loan">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Loan__VAgent__44FF419A">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
+          <End Role="Loan" Type="Self.Loan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentId" />
+            </Principal>
+            <Dependent Role="Loan">
+              <PropertyRef Name="VAgent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__UserId__4AB81AF0">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="lendingTreeModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Agent" EntityType="Self.Agent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Loan" EntityType="Self.Loan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Agent__Departmen__3B75D760" Association="Self.FK__Agent__Departmen__3B75D760">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Agent" EntitySet="Agent" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Loan__AppAgencyA__45F365D3" Association="Self.FK__Loan__AppAgencyA__45F365D3">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="Loan" EntitySet="Loan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Loan__LegalAgent__47DBAE45" Association="Self.FK__Loan__LegalAgent__47DBAE45">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="Loan" EntitySet="Loan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Loan__LoanAgency__440B1D61" Association="Self.FK__Loan__LoanAgency__440B1D61">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="Loan" EntitySet="Loan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Loan__PickupAgen__46E78A0C" Association="Self.FK__Loan__PickupAgen__46E78A0C">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="Loan" EntitySet="Loan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Loan__UserId__4316F928" Association="Self.FK__Loan__UserId__4316F928">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Loan" EntitySet="Loan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Loan__VAgent__44FF419A" Association="Self.FK__Loan__VAgent__44FF419A">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="Loan" EntitySet="Loan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__UserId__4AB81AF0" Association="Self.FK__Ticket__UserId__4AB81AF0">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="lendingTreeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="AgentId" />
+          </Key>
+          <Property Name="AgentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="A_FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="A_LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="A_Dob" Type="DateTime" Precision="0" />
+          <Property Name="A_Gender" Type="Boolean" />
+          <Property Name="A_ContactNumber" Type="Int64" />
+          <Property Name="A_Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Department" Relationship="Self.FK__Agent__Departmen__3B75D760" FromRole="Agent" ToRole="Department" />
+          <NavigationProperty Name="Loans" Relationship="Self.FK__Loan__AppAgencyA__45F365D3" FromRole="Agent" ToRole="Loan" />
+          <NavigationProperty Name="Loans1" Relationship="Self.FK__Loan__LegalAgent__47DBAE45" FromRole="Agent" ToRole="Loan" />
+          <NavigationProperty Name="Loans2" Relationship="Self.FK__Loan__LoanAgency__440B1D61" FromRole="Agent" ToRole="Loan" />
+          <NavigationProperty Name="Loans3" Relationship="Self.FK__Loan__PickupAgen__46E78A0C" FromRole="Agent" ToRole="Loan" />
+          <NavigationProperty Name="Loans4" Relationship="Self.FK__Loan__VAgent__44FF419A" FromRole="Agent" ToRole="Loan" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Agents" Relationship="Self.FK__Agent__Departmen__3B75D760" FromRole="Department" ToRole="Agent" />
+        </EntityType>
+        <EntityType Name="Loan">
+          <Key>
+            <PropertyRef Name="LoanId" />
+          </Key>
+          <Property Name="LoanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoanAmount" Type="Int64" />
+          <Property Name="Due_Date" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Income" Type="Int64" />
+          <Property Name="LoanType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PanNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AadharNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BankAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="LoanAgency_AdminId" Type="Int32" />
+          <Property Name="VAgent" Type="Int32" />
+          <Property Name="AppAgencyAgent" Type="Int32" />
+          <Property Name="PickupAgent" Type="Int32" />
+          <Property Name="LegalAgent" Type="Int32" />
+          <NavigationProperty Name="Agent" Relationship="Self.FK__Loan__AppAgencyA__45F365D3" FromRole="Loan" ToRole="Agent" />
+          <NavigationProperty Name="Agent1" Relationship="Self.FK__Loan__LegalAgent__47DBAE45" FromRole="Loan" ToRole="Agent" />
+          <NavigationProperty Name="Agent2" Relationship="Self.FK__Loan__LoanAgency__440B1D61" FromRole="Loan" ToRole="Agent" />
+          <NavigationProperty Name="Agent3" Relationship="Self.FK__Loan__PickupAgen__46E78A0C" FromRole="Loan" ToRole="Agent" />
+          <NavigationProperty Name="Agent4" Relationship="Self.FK__Loan__VAgent__44FF419A" FromRole="Loan" ToRole="Agent" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Loan__UserId__4316F928" FromRole="Loan" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="RequestId" />
+          </Key>
+          <Property Name="RequestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Issue" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Descrip" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateTicket" Type="DateTime" Precision="0" />
+          <Property Name="Resolution" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Ticket__UserId__4AB81AF0" FromRole="Ticket" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Dob" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContactNumber" Type="Int64" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Category" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Q1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Q2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Q3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="A1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="A2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="A3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Loans" Relationship="Self.FK__Loan__UserId__4316F928" FromRole="Users" ToRole="Loan" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK__Ticket__UserId__4AB81AF0" FromRole="Users" ToRole="Ticket" />
+        </EntityType>
+        <Association Name="FK__Agent__Departmen__3B75D760">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Agent" Type="Self.Agent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="Agent">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Loan__AppAgencyA__45F365D3">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
+          <End Role="Loan" Type="Self.Loan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentId" />
+            </Principal>
+            <Dependent Role="Loan">
+              <PropertyRef Name="AppAgencyAgent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Loan__LegalAgent__47DBAE45">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
+          <End Role="Loan" Type="Self.Loan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentId" />
+            </Principal>
+            <Dependent Role="Loan">
+              <PropertyRef Name="LegalAgent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Loan__LoanAgency__440B1D61">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
+          <End Role="Loan" Type="Self.Loan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentId" />
+            </Principal>
+            <Dependent Role="Loan">
+              <PropertyRef Name="LoanAgency_AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Loan__PickupAgen__46E78A0C">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
+          <End Role="Loan" Type="Self.Loan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentId" />
+            </Principal>
+            <Dependent Role="Loan">
+              <PropertyRef Name="PickupAgent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Loan__VAgent__44FF419A">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
+          <End Role="Loan" Type="Self.Loan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentId" />
+            </Principal>
+            <Dependent Role="Loan">
+              <PropertyRef Name="VAgent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Loan__UserId__4316F928">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Loan" Type="Self.Loan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Loan">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__UserId__4AB81AF0">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="lendingTreeEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Agents" EntityType="Self.Agent" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="Loans" EntityType="Self.Loan" />
+          <EntitySet Name="Tickets" EntityType="Self.Ticket" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Agent__Departmen__3B75D760" Association="Self.FK__Agent__Departmen__3B75D760">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Agent" EntitySet="Agents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Loan__AppAgencyA__45F365D3" Association="Self.FK__Loan__AppAgencyA__45F365D3">
+            <End Role="Agent" EntitySet="Agents" />
+            <End Role="Loan" EntitySet="Loans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Loan__LegalAgent__47DBAE45" Association="Self.FK__Loan__LegalAgent__47DBAE45">
+            <End Role="Agent" EntitySet="Agents" />
+            <End Role="Loan" EntitySet="Loans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Loan__LoanAgency__440B1D61" Association="Self.FK__Loan__LoanAgency__440B1D61">
+            <End Role="Agent" EntitySet="Agents" />
+            <End Role="Loan" EntitySet="Loans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Loan__PickupAgen__46E78A0C" Association="Self.FK__Loan__PickupAgen__46E78A0C">
+            <End Role="Agent" EntitySet="Agents" />
+            <End Role="Loan" EntitySet="Loans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Loan__VAgent__44FF419A" Association="Self.FK__Loan__VAgent__44FF419A">
+            <End Role="Agent" EntitySet="Agents" />
+            <End Role="Loan" EntitySet="Loans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Loan__UserId__4316F928" Association="Self.FK__Loan__UserId__4316F928">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Loan" EntitySet="Loans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__UserId__4AB81AF0" Association="Self.FK__Ticket__UserId__4AB81AF0">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="lendingTreeModelStoreContainer" CdmEntityContainer="lendingTreeEntities1">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="lendingTreeModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Agents">
+            <EntityTypeMapping TypeName="lendingTreeModel.Agent">
+              <MappingFragment StoreEntitySet="Agent">
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="A_FirstName" ColumnName="A_FirstName" />
+                <ScalarProperty Name="A_LastName" ColumnName="A_LastName" />
+                <ScalarProperty Name="A_Dob" ColumnName="A_Dob" />
+                <ScalarProperty Name="A_Gender" ColumnName="A_Gender" />
+                <ScalarProperty Name="A_ContactNumber" ColumnName="A_ContactNumber" />
+                <ScalarProperty Name="A_Password" ColumnName="A_Password" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="lendingTreeModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Loans">
+            <EntityTypeMapping TypeName="lendingTreeModel.Loan">
+              <MappingFragment StoreEntitySet="Loan">
+                <ScalarProperty Name="LoanId" ColumnName="LoanId" />
+                <ScalarProperty Name="LoanAmount" ColumnName="LoanAmount" />
+                <ScalarProperty Name="Due_Date" ColumnName="Due_Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Income" ColumnName="Income" />
+                <ScalarProperty Name="LoanType" ColumnName="LoanType" />
+                <ScalarProperty Name="PanNo" ColumnName="PanNo" />
+                <ScalarProperty Name="AadharNo" ColumnName="AadharNo" />
+                <ScalarProperty Name="BankAcc" ColumnName="BankAcc" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LoanAgency_AdminId" ColumnName="LoanAgency_AdminId" />
+                <ScalarProperty Name="VAgent" ColumnName="VAgent" />
+                <ScalarProperty Name="AppAgencyAgent" ColumnName="AppAgencyAgent" />
+                <ScalarProperty Name="PickupAgent" ColumnName="PickupAgent" />
+                <ScalarProperty Name="LegalAgent" ColumnName="LegalAgent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tickets">
+            <EntityTypeMapping TypeName="lendingTreeModel.Ticket">
+              <MappingFragment StoreEntitySet="Ticket">
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="Issue" ColumnName="Issue" />
+                <ScalarProperty Name="Descrip" ColumnName="Descrip" />
+                <ScalarProperty Name="DateTicket" ColumnName="DateTicket" />
+                <ScalarProperty Name="Resolution" ColumnName="Resolution" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="lendingTreeModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Q1" ColumnName="Q1" />
+                <ScalarProperty Name="Q2" ColumnName="Q2" />
+                <ScalarProperty Name="Q3" ColumnName="Q3" />
+                <ScalarProperty Name="A1" ColumnName="A1" />
+                <ScalarProperty Name="A2" ColumnName="A2" />
+                <ScalarProperty Name="A3" ColumnName="A3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
