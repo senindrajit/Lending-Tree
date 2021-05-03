@@ -170,5 +170,99 @@ namespace WebApplication1.Controllers
             }
             base.Dispose(disposing);
         }
+        
+        [HttpGet]
+        public ActionResult ForgotUserId()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ForgotUserId(ForgotUserId ob)
+        {
+            string message = "";
+            bool Status = false;
+            if (ModelState.IsValid)
+            {
+                var data = db.Users.FirstOrDefault(x => x.ContactNumber == ob.ContactNumber);
+                if(data != null)
+                {
+                    if (string.Compare(ob.Ques1, data.A1) == 0 && string.Compare(ob.Ques2, data.A2) == 0 && string.Compare(ob.Ques3, data.A3) == 0)
+                    {
+                        Status = true;
+                        message = $"User ID is {data.UserId} ";
+                    }
+                    else
+                    {
+                        message = "Wrong Answers to the Questions";
+                    }
+                }
+                else
+                {
+                    message = "Wrong Contact Number";
+                }
+            }
+            ViewBag.Status = Status;
+            ViewBag.Message = message;
+            return View(ob);
+        }
+
+        [HttpGet]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ForgotPassword(ForgotPassword ob)
+        {
+            string message = "";
+            if (ModelState.IsValid)
+            {
+                
+                var data = db.Users.FirstOrDefault(x => x.UserId == ob.UserId);
+                if (data != null)
+                {
+                    if (string.Compare(ob.Ques1, data.A1) == 0 && string.Compare(ob.Ques2, data.A2) == 0 && string.Compare(ob.Ques3, data.A3) == 0)
+                    {
+                        return RedirectToAction("ResetPassword", new { UserId = data.UserId});
+                    }
+                    else
+                    {
+                        message = "Wrong Answers to the Questions";
+                    }
+                }
+                else
+                {
+                    message = "User ID does not Exist";
+                }
+            }
+            ViewBag.Message = message;
+            return View(ob);
+        }
+
+        [HttpGet]
+        public ActionResult ResetPassword(string UserId)
+        {
+            return View(UserId);
+        }
+
+        [HttpPost]
+        public ActionResult ResetPassword(string UserId, ResetPassword ob)
+        {
+            string message = "";
+            if(ModelState.IsValid)
+            {
+                var data = db.Users.Find(UserId);
+                data.password = ob.NewPassword;
+                db.Entry(data).State = EntityState.Modified;
+                db.SaveChanges();
+                message = "Password Reset Sucessfull !!!";
+            }
+            ViewBag.Message = message;
+            return View(ob);
+        }
     }
 }
