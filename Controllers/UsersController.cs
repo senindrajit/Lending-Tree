@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using System.Windows;
 //using System.Windows.Forms;
 using System.Web.Security;
+using System.Windows;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -188,7 +185,7 @@ namespace WebApplication1.Controllers
                 var data = db.Users.FirstOrDefault(x => x.ContactNumber == ob.ContactNumber);
                 if(data != null)
                 {
-                    if (string.Compare(ob.Ques1, data.A1) == 0 && string.Compare(ob.Ques2, data.A2) == 0 && string.Compare(ob.Ques3, data.A3) == 0)
+                    if (string.Compare(ob.Ques1, data.Q1) == 0 && string.Compare(ob.Ques2, data.Q2) == 0 && string.Compare(ob.Ques3, data.Q3) == 0)
                     {
                         Status = true;
                         message = $"User ID is {data.UserId} ";
@@ -225,7 +222,7 @@ namespace WebApplication1.Controllers
                 var data = db.Users.FirstOrDefault(x => x.UserId == ob.UserId);
                 if (data != null)
                 {
-                    if (string.Compare(ob.Ques1, data.A1) == 0 && string.Compare(ob.Ques2, data.A2) == 0 && string.Compare(ob.Ques3, data.A3) == 0)
+                    if (string.Compare(ob.Ques1, data.Q1) == 0 && string.Compare(ob.Ques2, data.Q2) == 0 && string.Compare(ob.Ques3, data.Q3) == 0)
                     {
                         return RedirectToAction("ResetPassword", new { UserId = data.UserId});
                     }

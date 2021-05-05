@@ -20,7 +20,7 @@
     }
 
     <h2 style="color:black">User Account</h2>
-    <h4 style="color:black">Welcome Mr. @Html.Display(User.Identity.Name, "", "")</h4>
+    <h4 style="color:black">Welcome Mr. @HttpContext.Current.User.Identity.IsAuthenticated </h4>
 
     <div class="container">
         <div class="navbar-header">

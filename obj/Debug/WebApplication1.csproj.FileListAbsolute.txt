@@ -76,7 +76,6 @@ F:\finalProject\WebApplication1\bin\System.Web.WebPages.Razor.xml
 F:\finalProject\WebApplication1\bin\Newtonsoft.Json.xml
 F:\finalProject\WebApplication1\bin\Antlr3.Runtime.pdb
 F:\finalProject\WebApplication1\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-F:\finalProject\WebApplication1\obj\Debug\WebApplication1.csprojAssemblyReference.cache
 F:\finalProject\WebApplication1\obj\Debug\WebApplication1.csproj.CoreCompileInputs.cache
 F:\finalProject\WebApplication1\obj\Debug\WebApplication1.csproj.CopyComplete
 F:\finalProject\WebApplication1\obj\Debug\WebApplication1.dll
@@ -98,3 +97,4 @@ F:\finalProject\WebApplication1\bin\ro\Xceed.Wpf.AvalonDock.resources.dll
 F:\finalProject\WebApplication1\bin\ru\Xceed.Wpf.AvalonDock.resources.dll
 F:\finalProject\WebApplication1\bin\sv\Xceed.Wpf.AvalonDock.resources.dll
 F:\finalProject\WebApplication1\bin\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+F:\finalProject\WebApplication1\obj\Debug\WebApplication1.csprojAssemblyReference.cache

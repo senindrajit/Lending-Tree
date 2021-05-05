@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="lendingTreeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="lendingTreeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="AdminId" />
@@ -75,13 +75,9 @@
           <Property Name="Email" Type="varchar" MaxLength="30" />
           <Property Name="UserId" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="30" />
-          <Property Name="Category" Type="varchar" MaxLength="30" />
           <Property Name="Q1" Type="varchar" MaxLength="100" />
           <Property Name="Q2" Type="varchar" MaxLength="100" />
           <Property Name="Q3" Type="varchar" MaxLength="100" />
-          <Property Name="A1" Type="varchar" MaxLength="100" />
-          <Property Name="A2" Type="varchar" MaxLength="100" />
-          <Property Name="A3" Type="varchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK__Agent__Departmen__3B75D760">
           <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
@@ -219,8 +215,7 @@
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="lendingTreeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -308,13 +303,9 @@
           <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="UserId" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Category" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Q1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Q2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Q3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="A1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="A2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="A3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Loans" Relationship="Self.FK__Loan__UserId__4316F928" FromRole="Users" ToRole="Loan" />
           <NavigationProperty Name="Tickets" Relationship="Self.FK__Ticket__UserId__4AB81AF0" FromRole="Users" ToRole="Ticket" />
         </EntityType>
@@ -534,14 +525,10 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="Q1" ColumnName="Q1" />
                 <ScalarProperty Name="Q2" ColumnName="Q2" />
                 <ScalarProperty Name="Q3" ColumnName="Q3" />
-                <ScalarProperty Name="A1" ColumnName="A1" />
-                <ScalarProperty Name="A2" ColumnName="A2" />
-                <ScalarProperty Name="A3" ColumnName="A3" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
         </EntityContainerMapping>

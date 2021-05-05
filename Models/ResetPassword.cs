@@ -11,7 +11,7 @@ namespace WebApplication1.Models
         [Display(Name = "Enter New Password")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "No Password Entered")]
         [DataType(DataType.Password)]
-        [MinLength(6, ErrorMessage = "Minimum Length shoule be 6 characters")]
+        //[MinLength(6, ErrorMessage = "Minimum Length shoule be 6 characters")]
         public string NewPassword { get; set; }
     }
 }

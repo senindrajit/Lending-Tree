@@ -5,12 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="b2fa501c7c694b7981c7058a963b5836" Name="Diagram1">
-        <EntityTypeShape EntityType="lendingTreeModel.Admin" Width="1.5" PointX="5.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="lendingTreeModel.Admin" Width="1.5" PointX="3.25" PointY="0.625" IsExpanded="true" />
         <EntityTypeShape EntityType="lendingTreeModel.Agent" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="lendingTreeModel.Department" Width="1.5" PointX="1.5" PointY="16" IsExpanded="true" />
-        <EntityTypeShape EntityType="lendingTreeModel.Loan" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="lendingTreeModel.Ticket" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="lendingTreeModel.User" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="lendingTreeModel.Department" Width="1.5" PointX="5.625" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="lendingTreeModel.Loan" Width="1.5" PointX="6" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="lendingTreeModel.Ticket" Width="1.5" PointX="3.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="lendingTreeModel.User" Width="1.5" PointX="1" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="lendingTreeModel.FK__Agent__Departmen__3B75D760" ManuallyRouted="false" />
         <AssociationConnector Association="lendingTreeModel.FK__Loan__AppAgencyA__45F365D3" ManuallyRouted="false" />
         <AssociationConnector Association="lendingTreeModel.FK__Loan__LegalAgent__47DBAE45" ManuallyRouted="false" />

@@ -10,7 +10,7 @@ namespace WebApplication1.Models
     {
         [Display(Name = "Contact Number")]
         [Required(ErrorMessage = "Contact Number Required")]
-        [MinLength(10, ErrorMessage = "Minimum 10 digits")]
+        //[MinLength(10, ErrorMessage = "Minimum 10 digits")]
         [DataType(DataType.PhoneNumber)]
         public long ContactNumber { get; set; }
 

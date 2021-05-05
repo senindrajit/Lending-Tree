@@ -7,8 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Windows;
 using WebApplication1.Models;
-using System.Windows.Forms;
+//using System.Windows.Forms;
 
 namespace WebApplication1.Controllers
 {
@@ -88,7 +89,7 @@ namespace WebApplication1.Controllers
                     string password = encryptPassword.Encode(agent.A_Password);
                     if (db.Agents.Any(b => b.AgentId == agent.AgentId && b.A_Password == password))
                     {
-                        FormsAuthentication.SetAuthCookie(agent.AgentId, false);
+                        FormsAuthentication.SetAuthCookie(agent.AgentId.ToString(), false);
                         return RedirectToAction("AgentAccount", "Agents");
                     }
                     else

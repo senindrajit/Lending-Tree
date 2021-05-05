@@ -75,13 +75,9 @@
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="Category" ColumnName="Category" />
           <ScalarProperty Name="Q1" ColumnName="Q1" />
           <ScalarProperty Name="Q2" ColumnName="Q2" />
           <ScalarProperty Name="Q3" ColumnName="Q3" />
-          <ScalarProperty Name="A1" ColumnName="A1" />
-          <ScalarProperty Name="A2" ColumnName="A2" />
-          <ScalarProperty Name="A3" ColumnName="A3" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

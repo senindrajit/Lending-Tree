@@ -84,13 +84,9 @@
     <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="UserId" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="Category" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="Q1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Q2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Q3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="A1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="A2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="A3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Loans" Relationship="Self.FK__Loan__UserId__4316F928" FromRole="Users" ToRole="Loan" />
     <NavigationProperty Name="Tickets" Relationship="Self.FK__Ticket__UserId__4AB81AF0" FromRole="Users" ToRole="Ticket" />
   </EntityType>

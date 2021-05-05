@@ -70,13 +70,9 @@
     <Property Name="Email" Type="varchar" MaxLength="30" />
     <Property Name="UserId" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="password" Type="varchar" MaxLength="30" />
-    <Property Name="Category" Type="varchar" MaxLength="30" />
     <Property Name="Q1" Type="varchar" MaxLength="100" />
     <Property Name="Q2" Type="varchar" MaxLength="100" />
     <Property Name="Q3" Type="varchar" MaxLength="100" />
-    <Property Name="A1" Type="varchar" MaxLength="100" />
-    <Property Name="A2" Type="varchar" MaxLength="100" />
-    <Property Name="A3" Type="varchar" MaxLength="100" />
   </EntityType>
   <Association Name="FK__Agent__Departmen__3B75D760">
     <End Role="Department" Type="Self.Department" Multiplicity="0..1" />

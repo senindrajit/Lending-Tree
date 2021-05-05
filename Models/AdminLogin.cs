@@ -15,7 +15,7 @@ namespace WebApplication1.Models
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Password Required")]
         [DataType(DataType.Password)]
-        [MinLength(6, ErrorMessage = "Minimum Length 6 characters")]
+       // [MinLength(6, ErrorMessage = "Minimum Length 6 characters")]
         public string Password { set; get; }
 
         [Display(Name = "Remember Me")]

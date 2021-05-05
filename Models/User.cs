@@ -11,7 +11,7 @@ namespace WebApplication1.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,22 +23,15 @@ namespace WebApplication1.Models
     
         public string FirstName { get; set; }
         public string LastName { get; set; }
-
-        [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public Nullable<System.DateTime> Dob { get; set; }
         public string Gender { get; set; }
         public Nullable<long> ContactNumber { get; set; }
         public string Email { get; set; }
         public string UserId { get; set; }
         public string password { get; set; }
-        public string Category { get; set; }
         public string Q1 { get; set; }
         public string Q2 { get; set; }
         public string Q3 { get; set; }
-        public string A1 { get; set; }
-        public string A2 { get; set; }
-        public string A3 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Loan> Loans { get; set; }
